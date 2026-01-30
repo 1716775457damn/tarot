@@ -343,41 +343,95 @@
             animation_done();
         }
 
-        // 模拟读取用户数据
+        // 从 localStorage 读取真实用户数据
         var userData = null;
         try {
             var stored = localStorage.getItem("tarotUserData");
             if (stored) {
                 userData = JSON.parse(stored);
+                console.log("读取的用户数据:", userData);
             }
-        } catch(e) {}
-        
+        } catch (e) {
+            console.error("读取用户数据失败:", e);
+        }
+
+        // 如果没有用户数据，返回首页重新开始
         if (!userData) {
-            // 如果没有数据，通常应该跳转，这里为了演示保留
-            // window.location = "../../index.html";
+            console.warn("未找到用户数据，跳回首页");
+            window.location = "../../index.html";
+            return;
         }
 
         function animation_done() {
-            if ($(".flip-card-inner:eq(0)").css("transform") !== "none" && 
-                $(".flip-card-inner:eq(1)").css("transform") !== "none" && 
-                $(".flip-card-inner:eq(2)").css("transform") !== "none") {
+            // 三张牌都已经翻开才触发占卜
+            if ($(".flip-card-inner:eq(0)").css("transform") === "none" ||
+                $(".flip-card-inner:eq(1)").css("transform") === "none" ||
+                $(".flip-card-inner:eq(2)").css("transform") === "none") {
+                return;
+            }
 
-                // 调用 API (模拟)
-                var cards = (userData && userData.preparedCards) ? userData.preparedCards.map(c => c.name_zh || c.name_en) : ["Card1", "Card2", "Card3"];
-                
-                // 模拟 API 延迟响应
-                setTimeout(function(){
-                    var resultText = "The Patron represents authority and leadership...";
-                    $("#prediction_text").html(resultText).show();
+            // 组装提交给后端的牌面信息（优先用中文名）
+            var cards = [];
+            try {
+                if (userData && Array.isArray(userData.preparedCards)) {
+                    cards = userData.preparedCards.map(function(c) {
+                        return c.name_zh || c.name_en || "未知";
+                    });
+                }
+            } catch (e) {
+                console.error("处理牌面信息失败:", e);
+            }
+            if (!cards.length) {
+                cards = ["未知", "未知", "未知"];
+            }
+
+            var requestData = {
+                name: userData.name,
+                birth_date: userData.birth,
+                question: userData.question,
+                cards: cards
+            };
+            console.log("发送给后端的数据:", requestData);
+
+            fetch("/api/divine", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(requestData)
+            })
+            .then(function(res) {
+                if (!res.ok) {
+                    return res.json().then(function(errData) {
+                        throw new Error(errData.error || ("HTTP " + res.status + ": " + res.statusText));
+                    });
+                }
+                return res.json();
+            })
+            .then(function(data) {
+                var resultText = data.reply || "占卜结果生成中...";
+                // 保持换行格式，结果通常是中文
+                $("#prediction_text").html(resultText.replace(/\n/g, "<br>")).show();
+
+                // 显示牌面标签
+                if (cards.length >= 3) {
                     $("#tag1").text("#" + cards[0]).show();
                     $("#tag2").text("#" + cards[1]).show();
                     $("#tag3").text("#" + cards[2]).show();
-                    $("#tags_container").show();
-                    $("#buttons").show();
-                    var shareText = "🔮 " + resultText + "\n\nTry your fortune " + window.location.origin;
-                    $("#text_to_copy").text(shareText);
-                }, 500);
+                }
+                $("#tags_container").show();
+                $("#buttons").show();
 
+                var shareText = "🔮 " + resultText.substring(0, 80) + "...\n\n🌞 Try your fortune " + window.location.origin;
+                $("#text_to_copy").text(shareText);
+            })
+            .catch(function(err) {
+                console.error("获取占卜结果失败:", err);
+                var errorMsg = err.message || "占卜结果生成失败，请重试";
+                $("#prediction_text").html("<span style='color: #ff6b6b;'>" + errorMsg + "</span>").show();
+                $("#tags_container").show();
+                $("#buttons").show();
+            })
+            .finally(function() {
+                // 桌面端仍然做牌散开动画，移动端保持竖排
                 if (window.innerWidth > 1024) {
                     setTimeout(function () { move_cards(); }, 2000);
                 } else {
@@ -387,7 +441,7 @@
                     setTimeout(function () { $("#buttons").fadeIn("slow"); }, 1500);
                     $(".flip-card-inner").off('click');
                 }
-            }
+            });
         }
 
         $(".flip-card-inner").mouseleave(function() {
