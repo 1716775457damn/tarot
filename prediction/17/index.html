@@ -44,7 +44,7 @@
             }
         }
 
-        /* 平板和手机：重排布局，避免绝对定位导致超出屏幕 */
+        /* 平板和手机：重排布局，关键修复区域 */
         @media (max-width: 1024px) {
             body {
                 overflow-y: auto;
@@ -60,7 +60,7 @@
                 justify-content: flex-start;
                 padding: 80px 16px 40px;
                 box-sizing: border-box;
-                gap: 14px;
+                gap: 0; /* 使用 margin 控制间距 */
             }
 
             .flip-card {
@@ -70,22 +70,38 @@
                 display: block;
                 position: relative;
                 z-index: 1;
+
+                /* --- 核心修复代码 START --- */
+                /* 1. 强制设置宽高比，撑开物理高度，防止文字上浮重叠 */
+                /* 如果您的视频比较宽，可以改为 2/3 或 3/4 */
+                aspect-ratio: 9 / 16; 
+                
+                /* 2. 增加底部间距，把下方的元素推开 */
+                margin-bottom: 40px !important;
+                /* --- 核心修复代码 END --- */
+            }
+
+            /* 确保内部容器填满 aspect-ratio 撑开的高度 */
+            .flip-card-inner {
+                width: 100%;
+                height: 100%; 
             }
 
             .card_video {
                 width: 100% !important;
-                height: auto !important;
+                height: 100% !important; /* 确保视频填满卡片 */
+                object-fit: cover; /* 保持视频比例填满 */
             }
 
             #text_info {
                 position: static !important;
-                margin: 28px auto 0 !important;
+                margin: 0 auto !important; /* 去除原本的 top margin，由卡片的 margin-bottom 负责推开 */
                 padding-top: 0 !important;
                 margin-right: 0 !important;
                 width: 100%;
                 text-align: left;
                 box-sizing: border-box;
-                padding: 0 12px 12px;
+                padding: 0 12px 60px; /* 底部增加 padding 方便滚动浏览 */
                 z-index: 2;
             }
 
@@ -157,7 +173,6 @@
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-    <!-- Google Tag Manager -->
     <script>
         (function(w, d, s, l, i) {
             w[l] = w[l] || [];
@@ -174,15 +189,11 @@
             f.parentNode.insertBefore(j, f);
         })(window, document, 'script', 'dataLayer', 'GTM-MHMDVG6');
     </script>
-    <!-- End Google Tag Manager -->
-</head>
+    </head>
 
 
 <body>
-    <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MHMDVG6" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
-
     <div id="anim_container"></div>
 
     <div id="particles-js"></div>
