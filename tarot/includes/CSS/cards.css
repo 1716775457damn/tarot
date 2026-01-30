@@ -1,0 +1,592 @@
+body {
+    background-color: #000000;
+    color: #C5A3D8;
+}
+
+#particles-js {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    /* z-index: -1;*/
+}
+
+.card_video {
+    width: 30%;
+    width: 100%;
+    height: auto;
+    margin-right: 3%;
+    position: relative;
+    border-radius: 10px;
+}
+
+.card_video_container {
+
+    position: absolute;
+    /*transform: translateY(-50%);*/
+    width: -webkit-fill-available;
+    width: -moz-available;
+    height: auto;
+    top: 0;
+    height: 50vh;
+    line-height: 50vh;
+
+}
+
+#share_btn {
+    float: left;
+    background: #FEB420;
+    color: black;
+}
+
+#another_btn {
+    float: left;
+    background: white;
+    color: #000000;
+}
+
+#share_btn img {
+    width: 20px;
+}
+
+.tag {
+    display: inline-block;
+    font-size: 1.5vw;
+    margin-right: 2%;
+}
+
+#text_info {
+    margin-right: 45%;
+    margin-top: 5%;
+    padding-top: 5%;
+    line-height: normal;
+    position: absolute;
+    top: 50%;
+}
+
+.brillo_btn {
+    width: 165px;
+    font-size: 20px;
+    display: inline-block;
+    margin-right: 5%;
+    height: 50px;
+    font-weight: bold;
+}
+
+.flip-card {
+    width: 30%;
+    perspective: 1000px;
+    -webkit-perspective : 1000px;
+    display: inline-block;
+}
+
+.flip-card img {
+    width: 100%;
+    height: auto;
+    cursor: pointer;
+}
+
+/* This container is needed to position the front and back side */
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+    transition: transform 0.8s;
+    -webkit-transition: transform 0.8s;
+    -moz-transition: transform 0.8s;
+    -o-transition: transform 0.8s;
+    -ms-transition: transform 0.8s;
+
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -o-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+
+}
+
+/* Position the front and back side */
+.flip-card-front,
+.flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -o-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+}
+
+
+
+/* Style the front side (fallback if image is missing) */
+.flip-card-front img {
+    border-radius: 10px;
+}
+
+.flip-card-front {
+    transform: rotateY(0deg);
+    -webkit-transform: rotateY(0deg);
+    -moz-transform: rotateY(0deg);
+    -o-transform: rotateY(0deg);
+    -ms-transform: rotateY(0deg);
+    
+}
+
+/* Style the back side */
+.flip-card-back {
+    transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+    -o-transform: rotateY(180deg);
+    -ms-transform: rotateY(180deg);
+}
+
+#anim_container {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.main_content {
+    max-width: none;
+}
+
+#copy_btn {
+    background: #45795F;
+    color: white;
+    width: -webkit-fill-available;
+    width: -moz-available;
+    margin-top: 5%;
+}
+
+#page_link {
+    font-size: 18px;
+    font-weight: lighter;
+}
+
+#subtitle_txt {
+    font-size: 1.5vw;
+    text-align: center;
+    color: white;
+
+    bottom: 4%;
+    width: -webkit-fill-available;
+    width: -moz-available;
+    margin: 0 auto;
+    position: absolute;
+}
+
+
+.flip-card-inner:hover {
+    animation: shake 0.3s;
+    animation-iteration-count: 1;
+}
+
+
+@keyframes shake {
+    0% {
+        transform: translate(1px, 1px) rotate(0deg);
+        -webkit-transform: translate(1px, 1px) rotate(0deg);
+        -moz-transform: translate(1px, 1px) rotate(0deg);
+    }
+
+    10% {
+        transform: translate(-1px, -2px) rotate(-1deg);
+        -webkit-transform: translate(-1px, -2px) rotate(-1deg);
+        -moz-transform: translate(-1px, -2px) rotate(-1deg);
+    }
+
+    20% {
+        transform: translate(-3px, 0px) rotate(1deg);
+        -webkit-transform: translate(-3px, 0px) rotate(1deg);
+        -moz-transform: translate(-3px, 0px) rotate(1deg);
+    }
+
+    30% {
+        transform: translate(3px, 2px) rotate(0deg);
+        -webkit-transform: translate(3px, 2px) rotate(0deg);
+        -moz-transform: translate(3px, 2px) rotate(0deg);
+    }
+
+    40% {
+        transform: translate(1px, -1px) rotate(1deg);
+        -webkit-transform: translate(1px, -1px) rotate(1deg);
+        -moz-transform: translate(1px, -1px) rotate(1deg);
+    }
+
+    50% {
+        transform: translate(-1px, 2px) rotate(-1deg);
+        -webkit-transform: translate(-1px, 2px) rotate(-1deg);
+        -moz-transform: translate(-1px, 2px) rotate(-1deg);
+    }
+
+    60% {
+        transform: translate(-3px, 1px) rotate(0deg);
+        -webkit-transform: translate(-3px, 1px) rotate(0deg);
+        -moz-transform: translate(-3px, 1px) rotate(0deg);
+    }
+
+    70% {
+        transform: translate(3px, 1px) rotate(-1deg);
+        -webkit-transform: translate(3px, 1px) rotate(-1deg);
+        -moz-transform: translate(3px, 1px) rotate(-1deg);
+    }
+
+    80% {
+        transform: translate(-1px, -1px) rotate(1deg);
+        -webkit-transform: translate(-1px, -1px) rotate(1deg);
+        -moz-transform: translate(-1px, -1px) rotate(1deg);
+    }
+
+    90% {
+        transform: translate(1px, 2px) rotate(0deg);
+        -webkit-transform: translate(1px, 2px) rotate(0deg);
+        -moz-transform: translate(1px, 2px) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(1px, -2px) rotate(-1deg);
+        -webkit-transform: translate(1px, -2px) rotate(-1deg);
+        -moz-transform: translate(1px, -2px) rotate(-1deg);
+    }
+}
+
+.notAnimation:hover {
+    animation: none;
+}
+
+/* -------------------------------------------------- */
+/* Small screens - MOBILE */
+@media only screen and (max-width: 40em) {
+    .icons {
+        position: fixed;
+    }
+
+    .main_content {
+        margin-left: 20%;
+        margin-right: 20%;
+    }
+
+    .main_text {
+        margin-bottom: -5%;
+    }
+
+    .flip-card {
+        width: 100%;
+        height: 108vw;
+        display: -webkit-inline-box;
+        margin-right: unset;
+    }
+
+    .card_video_container {
+        top: 10%;
+        line-height: unset;
+        height: auto;
+    }
+
+    #text_info {
+        margin-right: unset;
+        margin-top: 5%;
+        line-height: normal;
+        position: inherit;
+        top: unset;
+        padding-bottom: 40%;
+    }
+
+    .tag {
+        display: inline-block;
+        font-size: 4.5vw;
+        margin-right: unset;
+    }
+
+    .brillo_btn {
+        width: 33%;
+        font-size: 3vw;
+        height: 25px;
+        padding: 10px;
+    }
+
+    .btn_icon {
+        width: 15px;
+    }
+
+    #share_btn img {
+        width: 10px;
+    }
+
+    #another_btn {
+        float: right;
+    }
+
+    #copy_btn {
+        font-size: 2.5vw;
+        height: 35px;
+    }
+
+}
+
+/* Medium screens - TABLET */
+/* min-width 641px and max-width 1024px */
+@media only screen and (min-width: 40.060em) and (max-width: 64em) {
+    .icons {
+        position: fixed;
+    }
+
+    .main_content {
+        margin-left: 25%;
+        margin-right: 25%;
+    }
+
+    .main_text {
+        margin-bottom: -5%;
+    }
+
+    .flip-card {
+        width: 100%;
+        height: 100vw;
+        display: -webkit-inline-box;
+        margin-right: unset;
+    }
+
+    .card_video_container {
+        top: 10%;
+        line-height: unset;
+        height: auto;
+    }
+
+    #text_info {
+        margin-right: unset;
+        margin-top: 5%;
+        line-height: normal;
+        position: inherit;
+        top: unset;
+        margin-bottom: 30%;
+    }
+
+    .tag {
+        display: inline-block;
+        font-size: 4.5vw;
+        margin-right: unset;
+    }
+
+    .brillo_btn {
+        width: 33%;
+        font-size: 2.5vw;
+        height: 40px;
+        padding: 10px;
+    }
+
+    .btn_icon {
+        width: 17px;
+    }
+
+    #share_btn img {
+        width: 13px;
+    }
+
+    #another_btn {
+        float: right;
+    }
+
+}
+
+
+/**********************/
+/* min-width 1024 and max-width 1440px*/
+/* Large screens - DESKTOP */
+@media only screen and (min-width: 64.060em) and (max-width: 75em) {
+    .card_video_container {
+        width: 800px;
+    }
+
+    .main_content {
+        top: 50%;
+        height: 444px;
+        margin-top: -222px;
+        line-height: unset;
+        left: 50%;
+        margin-left: -400px;
+    }
+
+    #card1 {
+        margin-right: 20px;
+    }
+
+    #card2 {
+        margin-right: 20px;
+    }
+
+    #text_info {
+        margin-right: 45%;
+        margin-top: 5%;
+        line-height: normal;
+        position: absolute;
+        top: 50%;
+        height: 444px;
+        margin-top: -222px;
+    }
+
+    .brillo_btn {
+        width: 145px;
+        font-size: 17px;
+        height: 40px;
+    }
+
+    .main_text {
+        font-size: 3vw;
+    }
+
+    #subtitle_txt {
+        font-size: 2.2vw;
+    }
+
+    .flip-card {
+        width: 250px;
+    }
+}
+
+@media only screen and (min-width: 75.060em) and (max-width: 90em) {
+    .card_video_container {
+        width: 950px;
+    }
+
+    .main_content {
+        top: 50%;
+        height: 524px;
+        margin-top: -267px;
+        line-height: unset;
+        left: 50%;
+        margin-left: -475px;
+    }
+
+    #card1 {
+        margin-right: 20px;
+    }
+
+    #card2 {
+        margin-right: 20px;
+    }
+
+    #text_info {
+        margin-right: 45%;
+        margin-top: 5%;
+        line-height: normal;
+        position: absolute;
+        top: 50%;
+        height: 444px;
+        margin-top: -222px;
+    }
+
+    .brillo_btn {
+        width: 145px;
+        font-size: 17px;
+        height: 40px;
+    }
+
+    .main_text {
+        font-size: 3vw;
+    }
+
+    #subtitle_txt {
+        font-size: 2.2vw;
+    }
+
+    .flip-card {
+        width: 300px;
+    }
+}
+
+/* XLarge screens min-width 1440px and max-width 1700px*/
+@media only screen and (min-width: 90.060em) and (max-width: 106.25em) {
+    #subtitle_txt {
+        font-size: 2vw;
+        margin-top: 10%;
+    }
+
+    .card_video_container {
+        width: 1100px;
+    }
+
+    .main_content {
+        top: 50%;
+        height: 586px;
+        margin-top: -293px;
+        line-height: unset;
+        left: 50%;
+        margin-left: -550px;
+    }
+
+    #card1 {
+        margin-right: 25px;
+    }
+
+    #card2 {
+        margin-right: 25px;
+    }
+
+    .flip-card {
+        width: 330px;
+    }
+
+    #text_info {
+        height: 586px;
+        margin-top: -293px;
+    }
+}
+
+/** XXLarge screens, more than 1700 px */
+@media only screen and (min-width: 106.31em) {
+    .card_video_container {
+        width: 1180px;
+    }
+
+    .main_content {
+        top: 50%;
+        height: 658px;
+        margin-top: -329px;
+        line-height: unset;
+        left: 50%;
+        margin-left: -590px;
+    }
+
+    #card1 {
+        margin-right: 30px;
+    }
+
+    #card2 {
+        margin-right: 30px;
+    }
+
+    .flip-card {
+        width: 370px;
+    }
+
+    #text_info {
+        top: 50%;
+        height: 658px;
+        margin-top: -329px;
+    }
+
+    .main_text {
+        font-size: 2.5vw;
+    }
+
+    #subtitle_txt {
+        margin-top: 15%;
+    }
+
+    #title_colored {
+        width: 16vw;
+
+    }
+}
