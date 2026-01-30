@@ -58,14 +58,15 @@
                 flex-direction: column;
                 align-items: center;
                 justify-content: flex-start;
-                padding: 80px 12px 40px;
+                padding: 80px 16px 40px;
                 box-sizing: border-box;
+                gap: 14px;
             }
 
             .flip-card {
-                width: 80vw !important;
-                max-width: 280px;
-                margin: 10px auto;
+                width: 82vw !important;
+                max-width: 300px;
+                margin: 0 auto;
                 display: block;
                 position: relative;
                 z-index: 1;
@@ -78,13 +79,13 @@
 
             #text_info {
                 position: static !important;
-                margin: 24px auto 0 !important;
+                margin: 28px auto 0 !important;
                 padding-top: 0 !important;
                 margin-right: 0 !important;
                 width: 100%;
                 text-align: left;
                 box-sizing: border-box;
-                padding: 0 8px 8px;
+                padding: 0 12px 12px;
                 z-index: 2;
             }
 
@@ -350,30 +351,44 @@
             console.log(e);
         });
 
-        function flip() {
-            // 只在第一次点击时翻面
-            var currentTransform = $(this).css("transform");
-            if (!currentTransform || currentTransform === 'none' || currentTransform === 'matrix(1, 0, 0, 1, 0, 0)') {
-                $(this).css("transform", "rotateY(180deg)");
+        // 记录每张牌是否已经翻过，避免依赖 CSS transform 字符串（不同浏览器表现不一致）
+        var flippedState = {
+            card1: false,
+            card2: false,
+            card3: false
+        };
 
-                // 移动端有时不会自动播放，需要在用户点击时手动 play 一下
-                var cardId = $(this).closest('.flip-card').attr('id');
-                if (cardId) {
-                    var videoEl = document.getElementById(cardId + "_video");
-                    if (videoEl) {
-                        try {
-                            var playPromise = videoEl.play();
-                            if (playPromise && playPromise.catch) {
-                                playPromise.catch(function (e) {
-                                    console.warn("video play blocked:", e);
-                                });
-                            }
-                        } catch (e) {
-                            console.warn("video play error:", e);
-                        }
+        function flip() {
+            var cardId = $(this).closest('.flip-card').attr('id');
+            if (!cardId) {
+                return;
+            }
+
+            // 已经翻过的牌不再重复处理
+            if (flippedState[cardId]) {
+                return;
+            }
+
+            flippedState[cardId] = true;
+
+            // 翻面
+            $(this).css("transform", "rotateY(180deg)");
+
+            // 移动端有时不会自动播放，需要在用户点击时手动 play 一下
+            var videoEl = document.getElementById(cardId + "_video");
+            if (videoEl) {
+                try {
+                    var playPromise = videoEl.play();
+                    if (playPromise && playPromise.catch) {
+                        playPromise.catch(function (e) {
+                            console.warn("video play blocked:", e);
+                        });
                     }
+                } catch (e) {
+                    console.warn("video play error:", e);
                 }
             }
+
             animation_done();
         }
 
@@ -630,26 +645,15 @@
             $(".flip-card").stop(true, false);
 
             // 把卡片动画回原位（撤销 move_cards 的效果）
-            // 注意：move_cards 修改的是 flip-card-inner 的位置，需要重置
-            $(".flip-card-inner:eq(0)").animate({
-                left: '0',
-                top: '0'
-            }, 800, function() {
-                $(this).css("left", "").css("top", "").css("right", "");
-            });
-            
-            $(".flip-card-inner:eq(1)").animate({
-                left: '0',
-                top: '0'
-            }, 800, function() {
-                $(this).css("left", "").css("top", "").css("right", "");
-            });
-            
-            $(".flip-card-inner:eq(2)").animate({
-                right: '0',
-                top: '0'
-            }, 800, function() {
-                $(this).css("left", "").css("top", "").css("right", "");
+            // 注意：桌面端会调用 move_cards，移动端不会；这里统一恢复到初始位置
+            $(".flip-card-inner").each(function() {
+                $(this).animate({
+                    left: '0',
+                    top: '0',
+                    right: '0'
+                }, 800, function() {
+                    $(this).css({ left: "", top: "", right: "" });
+                });
             });
 
             // 延迟一下再翻回背面，让位置动画先完成
@@ -660,6 +664,9 @@
                 
                 // 移除 notAnimation 类
                 $(".flip-card-inner").removeClass("notAnimation");
+
+                // 重置翻牌状态
+                flippedState = { card1: false, card2: false, card3: false };
 
                 // 恢复点击翻牌事件（移除 load_video，重新绑定 flip）
                 $(".flip-card-inner").off('click');
