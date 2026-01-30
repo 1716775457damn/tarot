@@ -212,7 +212,10 @@
                         <img src="../../includes/images/cards/back.png">
                     </div>
                     <div class="flip-card-back">
-                        <video autoplay muted loop class="card_video" id="card1_video" src="../../includes/videos/The Artificial Intelligence.mp4" type="video/mp4"></video>
+                        <video autoplay muted playsinline webkit-playsinline x5-playsinline loop
+                               class="card_video" id="card1_video"
+                               src="../../includes/videos/The Artificial Intelligence.mp4"
+                               type="video/mp4"></video>
                     </div>
                 </div>
             </div>
@@ -223,7 +226,10 @@
                         <img src="../../includes/images/cards/back.png">
                     </div>
                     <div class="flip-card-back">
-                        <video autoplay muted loop class="card_video" id="card2_video" src="../../includes/videos/The Update.mp4" type="video/mp4"></video>
+                        <video autoplay muted playsinline webkit-playsinline x5-playsinline loop
+                               class="card_video" id="card2_video"
+                               src="../../includes/videos/The Update.mp4"
+                               type="video/mp4"></video>
                     </div>
                 </div>
             </div>
@@ -234,7 +240,10 @@
                         <img src="../../includes/images/cards/back.png">
                     </div>
                     <div class="flip-card-back">
-                        <video autoplay muted loop class="card_video" id="card3_video" src="../../includes/videos/The Patron.mp4" type="video/mp4"></video>
+                        <video autoplay muted playsinline webkit-playsinline x5-playsinline loop
+                               class="card_video" id="card3_video"
+                               src="../../includes/videos/The Patron.mp4"
+                               type="video/mp4"></video>
                     </div>
                 </div>
             </div>
@@ -339,9 +348,28 @@
         });
 
         function flip() {
-            if ($(this).css("transform") == 'none') {
+            // 只在第一次点击时翻面
+            var currentTransform = $(this).css("transform");
+            if (!currentTransform || currentTransform === 'none' || currentTransform === 'matrix(1, 0, 0, 1, 0, 0)') {
                 $(this).css("transform", "rotateY(180deg)");
 
+                // 移动端有时不会自动播放，需要在用户点击时手动 play 一下
+                var cardId = $(this).closest('.flip-card').attr('id');
+                if (cardId) {
+                    var videoEl = document.getElementById(cardId + "_video");
+                    if (videoEl) {
+                        try {
+                            var playPromise = videoEl.play();
+                            if (playPromise && playPromise.catch) {
+                                playPromise.catch(function (e) {
+                                    console.warn("video play blocked:", e);
+                                });
+                            }
+                        } catch (e) {
+                            console.warn("video play error:", e);
+                        }
+                    }
+                }
             }
             animation_done();
         }
@@ -377,7 +405,7 @@
             // 所有卡片都翻开了，调用后端 API 获取占卜结果
             if ($(".flip-card-inner:eq(0)").css("transform") !== "none" && $(".flip-card-inner:eq(1)").css(
                     "transform") !== "none" && $(".flip-card-inner:eq(2)").css("transform") !== "none") {
-                
+
                 // 调用后端 API
                 var cards = userData.preparedCards.map(c => c.name_zh || c.name_en);
                 if (cards.length === 0) {
@@ -434,11 +462,28 @@
                     $("#tags_container").show();
                     $("#buttons").show();
                 });
-                
-                // if all cards are flipped move the cards after the last animation finishes
-                setTimeout(function() {
-                    move_cards();
-                }, 2000);
+
+                // 桌面端保持原来的卡片散开动画；移动端直接保持竖排布局，避免乱飞
+                if (window.innerWidth > 1024) {
+                    // if all cards are flipped move the cards after the last animation finishes
+                    setTimeout(function () {
+                        move_cards();
+                    }, 2000);
+                } else {
+                    // 移动端：隐藏提示，淡入结果和按钮，不移动卡片
+                    $("#subtitle_txt").hide();
+                    setTimeout(function () {
+                        $("#prediction_text").fadeIn("slow");
+                    }, 500);
+                    setTimeout(function () {
+                        $("#tags_container").fadeIn("slow");
+                    }, 1000);
+                    setTimeout(function () {
+                        $("#buttons").fadeIn("slow");
+                    }, 1500);
+                    // 禁止继续点击卡片
+                    $(".flip-card-inner").off('click');
+                }
 
             } else {
                 //console.log("animations not done");
