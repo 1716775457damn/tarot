@@ -79,85 +79,180 @@
 
     <!-- 新增：用户输入表单页面 -->
     <div id="page0" style="display: none; position: relative; z-index: 10;">
-        <div class="main_content" id="p0_main_content" style="max-width: 700px; margin: 0 auto; padding: 60px 40px; background: rgba(0,0,0,0.7); border-radius: 20px; backdrop-filter: blur(10px); border: 2px solid rgba(197, 163, 216, 0.3); box-shadow: 0 8px 32px rgba(0,0,0,0.5);">
-            <div class="main_text" style="margin-bottom: 40px; text-align: center; font-size: 2.5vw; color: #C5A3D8; text-shadow: 0 0 20px rgba(197, 163, 216, 0.5);">
+        <div class="main_content" id="p0_main_content">
+            <div class="main_text" id="p0_title">
                 <span class="rainbow">🔮 命元录入 🔮</span>
             </div>
             
-            <div style="margin-bottom: 25px;">
-                <label style="display: block; margin-bottom: 8px; color: #E6E6E6; font-size: 1.1vw; font-weight: bold;">姓名</label>
-                <input type="text" id="user_name" placeholder="请输入您的姓名" 
-                    style="width: 100%; padding: 18px; background: rgba(255,255,255,0.1); border: 2px solid rgba(197, 163, 216, 0.4); color: #E6E6E6; font-size: 1.1vw; border-radius: 8px; font-family: inherit; transition: all 0.3s; box-sizing: border-box;">
+            <div class="form-group">
+                <label class="form-label">姓名</label>
+                <input type="text" id="user_name" placeholder="请输入您的姓名" class="form-input">
             </div>
             
-            <div style="margin-bottom: 25px;">
-                <label style="display: block; margin-bottom: 8px; color: #E6E6E6; font-size: 1.1vw; font-weight: bold;">出生日期</label>
-                <div id="date_picker" style="width: 100%; padding: 20px; background: rgba(255,255,255,0.1); border: 2px solid rgba(197, 163, 216, 0.4); border-radius: 8px; box-sizing: border-box; display: flex; justify-content: space-around; align-items: center; position: relative;">
+            <div class="form-group">
+                <label class="form-label">出生日期</label>
+                <div id="date_picker">
                     <!-- 年份选择器 -->
-                    <div class="picker-column" style="flex: 1; text-align: center;">
-                        <div class="picker-label" style="color: #C5A3D8; font-size: 0.9vw; margin-bottom: 10px;">年</div>
-                        <div class="picker-wheel" id="year_picker" style="height: 200px; overflow: hidden; position: relative; cursor: grab;">
-                            <div class="picker-items" id="year_items" style="transition: transform 0.3s ease-out;"></div>
+                    <div class="picker-column">
+                        <div class="picker-label">年</div>
+                        <div class="picker-wheel" id="year_picker">
+                            <div class="picker-items" id="year_items"></div>
                         </div>
                     </div>
                     <!-- 月份选择器 -->
-                    <div class="picker-column" style="flex: 1; text-align: center;">
-                        <div class="picker-label" style="color: #C5A3D8; font-size: 0.9vw; margin-bottom: 10px;">月</div>
-                        <div class="picker-wheel" id="month_picker" style="height: 200px; overflow: hidden; position: relative; cursor: grab;">
-                            <div class="picker-items" id="month_items" style="transition: transform 0.3s ease-out;"></div>
+                    <div class="picker-column">
+                        <div class="picker-label">月</div>
+                        <div class="picker-wheel" id="month_picker">
+                            <div class="picker-items" id="month_items"></div>
                         </div>
                     </div>
                     <!-- 日期选择器 -->
-                    <div class="picker-column" style="flex: 1; text-align: center;">
-                        <div class="picker-label" style="color: #C5A3D8; font-size: 0.9vw; margin-bottom: 10px;">日</div>
-                        <div class="picker-wheel" id="day_picker" style="height: 200px; overflow: hidden; position: relative; cursor: grab;">
-                            <div class="picker-items" id="day_items" style="transition: transform 0.3s ease-out;"></div>
+                    <div class="picker-column">
+                        <div class="picker-label">日</div>
+                        <div class="picker-wheel" id="day_picker">
+                            <div class="picker-items" id="day_items"></div>
                         </div>
                     </div>
                     <!-- 选中指示线 -->
-                    <div class="picker-mask" style="position: absolute; top: 50%; left: 0; right: 0; height: 50px; margin-top: -25px; pointer-events: none; border-top: 2px solid rgba(197, 163, 216, 0.5); border-bottom: 2px solid rgba(197, 163, 216, 0.5); background: rgba(197, 163, 216, 0.1);"></div>
+                    <div class="picker-mask"></div>
                 </div>
                 <input type="hidden" id="user_birth" value="">
             </div>
             
-            <div style="margin-bottom: 35px;">
-                <label style="display: block; margin-bottom: 8px; color: #E6E6E6; font-size: 1.1vw; font-weight: bold;">您想问的问题</label>
-                <textarea id="user_question" rows="5" placeholder="例如：我今天去谈客户，穿什么颜色的衣服能旺财运？" 
-                    style="width: 100%; padding: 18px; background: rgba(255,255,255,0.1); border: 2px solid rgba(197, 163, 216, 0.4); color: #E6E6E6; font-size: 1.1vw; border-radius: 8px; resize: vertical; font-family: inherit; transition: all 0.3s; box-sizing: border-box; min-height: 120px;"></textarea>
+            <div class="form-group">
+                <label class="form-label">您想问的问题</label>
+                <textarea id="user_question" rows="5" placeholder="例如：我今天去谈客户，穿什么颜色的衣服能旺财运？" class="form-textarea"></textarea>
             </div>
             
-            <div id="p0_enter_btn" class="brillo_btn" style="cursor: pointer; width: 100%; text-align: center; margin-top: 20px; background: linear-gradient(135deg, #C5A3D8 0%, #9B7BB8 100%); border: none; box-shadow: 0 4px 15px rgba(197, 163, 216, 0.4); transition: all 0.3s;">
+            <div id="p0_enter_btn" class="brillo_btn submit-btn">
                 开始占卜 </br>
                 <img src="./includes/images/arrow_left_grey.png" class="btn_icon">
             </div>
             
-            <div id="p0_loading" style="display: none; margin-top: 25px; text-align: center; color: #FEB420; font-size: 1.2vw; animation: pulse 2s infinite;">
-                <div style="margin-bottom: 10px;">🔮</div>
+            <div id="p0_loading" class="loading-indicator">
+                <div class="loading-icon">🔮</div>
                 正在准备塔罗牌...
             </div>
         </div>
     </div>
     
     <style>
-        /* 输入框聚焦效果 */
-        #page0 input:focus, #page0 textarea:focus {
+        /* 表单容器 */
+        #p0_main_content {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 60px 40px;
+            background: rgba(0,0,0,0.7);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(197, 163, 216, 0.3);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+        }
+        
+        /* 标题 */
+        #p0_title {
+            margin-bottom: 40px;
+            text-align: center;
+            font-size: 32px;
+            color: #C5A3D8;
+            text-shadow: 0 0 20px rgba(197, 163, 216, 0.5);
+        }
+        
+        /* 表单组 */
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        /* 标签 */
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            color: #E6E6E6;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        
+        /* 输入框 */
+        .form-input,
+        .form-textarea {
+            width: 100%;
+            padding: 18px;
+            background: rgba(255,255,255,0.1);
+            border: 2px solid rgba(197, 163, 216, 0.4);
+            color: #E6E6E6;
+            font-size: 16px;
+            border-radius: 8px;
+            font-family: inherit;
+            transition: all 0.3s;
+            box-sizing: border-box;
+        }
+        
+        .form-textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        .form-input:focus,
+        .form-textarea:focus {
             outline: none;
             border-color: #C5A3D8 !important;
             box-shadow: 0 0 15px rgba(197, 163, 216, 0.5) !important;
             background: rgba(255,255,255,0.15) !important;
         }
         
-        /* 日期选择器样式 */
+        .form-input::placeholder,
+        .form-textarea::placeholder {
+            color: rgba(255,255,255,0.5);
+        }
+        
+        /* 日期选择器容器 */
+        #date_picker {
+            width: 100%;
+            padding: 20px;
+            background: rgba(255,255,255,0.1);
+            border: 2px solid rgba(197, 163, 216, 0.4);
+            border-radius: 8px;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            position: relative;
+        }
+        
+        .picker-column {
+            flex: 1;
+            text-align: center;
+        }
+        
+        .picker-label {
+            color: #C5A3D8;
+            font-size: 14px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        .picker-wheel {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+            cursor: grab;
+        }
+        
+        .picker-wheel:active {
+            cursor: grabbing;
+        }
+        
         .picker-items {
             display: flex;
             flex-direction: column;
             align-items: center;
+            transition: transform 0.3s ease-out;
         }
         
         .picker-item {
             height: 50px;
             line-height: 50px;
-            font-size: 1.2vw;
+            font-size: 18px;
             color: rgba(230, 230, 230, 0.5);
             transition: all 0.2s;
             user-select: none;
@@ -166,13 +261,9 @@
         
         .picker-item.selected {
             color: #C5A3D8;
-            font-size: 1.4vw;
+            font-size: 22px;
             font-weight: bold;
             text-shadow: 0 0 10px rgba(197, 163, 216, 0.5);
-        }
-        
-        .picker-wheel {
-            position: relative;
         }
         
         .picker-wheel::before,
@@ -196,33 +287,49 @@
             background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%);
         }
         
-        .picker-wheel:active {
-            cursor: grabbing;
+        .picker-mask {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 50px;
+            margin-top: -25px;
+            pointer-events: none;
+            border-top: 2px solid rgba(197, 163, 216, 0.5);
+            border-bottom: 2px solid rgba(197, 163, 216, 0.5);
+            background: rgba(197, 163, 216, 0.1);
         }
         
-        /* 移动端适配 */
-        @media (max-width: 768px) {
-            .picker-item {
-                font-size: 16px;
-            }
-            .picker-item.selected {
-                font-size: 18px;
-            }
-            .picker-label {
-                font-size: 12px !important;
-            }
-            #date_picker {
-                padding: 15px !important;
-            }
-            .picker-wheel {
-                height: 150px !important;
-            }
+        /* 提交按钮 */
+        .submit-btn {
+            cursor: pointer;
+            width: 100%;
+            text-align: center;
+            margin-top: 20px;
+            background: linear-gradient(135deg, #C5A3D8 0%, #9B7BB8 100%);
+            border: none;
+            box-shadow: 0 4px 15px rgba(197, 163, 216, 0.4);
+            transition: all 0.3s;
         }
         
-        /* 按钮悬停效果 */
-        #p0_enter_btn:hover {
+        .submit-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(197, 163, 216, 0.6) !important;
+        }
+        
+        /* 加载指示器 */
+        .loading-indicator {
+            display: none;
+            margin-top: 25px;
+            text-align: center;
+            color: #FEB420;
+            font-size: 16px;
+            animation: pulse 2s infinite;
+        }
+        
+        .loading-icon {
+            margin-bottom: 10px;
+            font-size: 24px;
         }
         
         /* 脉冲动画 */
@@ -231,9 +338,137 @@
             50% { opacity: 0.6; }
         }
         
-        /* 输入框占位符样式 */
-        #page0 input::placeholder, #page0 textarea::placeholder {
-            color: rgba(255,255,255,0.5);
+        /* 移动端适配 */
+        @media (max-width: 768px) {
+            #p0_main_content {
+                padding: 30px 20px;
+                margin: 10px;
+                border-radius: 15px;
+            }
+            
+            #p0_title {
+                font-size: 24px;
+                margin-bottom: 30px;
+            }
+            
+            .form-label {
+                font-size: 14px;
+                margin-bottom: 6px;
+            }
+            
+            .form-input,
+            .form-textarea {
+                padding: 14px;
+                font-size: 16px; /* 防止iOS自动缩放 */
+            }
+            
+            .form-textarea {
+                min-height: 100px;
+            }
+            
+            #date_picker {
+                padding: 15px 10px;
+            }
+            
+            .picker-label {
+                font-size: 12px;
+                margin-bottom: 8px;
+            }
+            
+            .picker-wheel {
+                height: 150px;
+            }
+            
+            .picker-item {
+                height: 40px;
+                line-height: 40px;
+                font-size: 16px;
+                min-width: 50px;
+            }
+            
+            .picker-item.selected {
+                font-size: 18px;
+            }
+            
+            .picker-mask {
+                height: 40px;
+                margin-top: -20px;
+            }
+            
+            .picker-wheel::before,
+            .picker-wheel::after {
+                height: 55px;
+            }
+            
+            .submit-btn {
+                padding: 15px;
+                font-size: 16px;
+            }
+            
+            .loading-indicator {
+                font-size: 14px;
+            }
+            
+            .loading-icon {
+                font-size: 20px;
+            }
+        }
+        
+        /* 小屏幕手机适配 */
+        @media (max-width: 480px) {
+            #p0_main_content {
+                padding: 20px 15px;
+                margin: 5px;
+            }
+            
+            #p0_title {
+                font-size: 20px;
+                margin-bottom: 20px;
+            }
+            
+            .form-group {
+                margin-bottom: 20px;
+            }
+            
+            .form-input,
+            .form-textarea {
+                padding: 12px;
+                font-size: 16px;
+            }
+            
+            #date_picker {
+                padding: 12px 8px;
+            }
+            
+            .picker-wheel {
+                height: 120px;
+            }
+            
+            .picker-item {
+                height: 35px;
+                line-height: 35px;
+                font-size: 14px;
+            }
+            
+            .picker-item.selected {
+                font-size: 16px;
+            }
+            
+            .picker-mask {
+                height: 35px;
+                margin-top: -17.5px;
+            }
+        }
+        
+        /* 横屏适配 */
+        @media (max-width: 768px) and (orientation: landscape) {
+            #p0_main_content {
+                padding: 20px 30px;
+            }
+            
+            .picker-wheel {
+                height: 120px;
+            }
         }
     </style>
 
@@ -518,6 +753,21 @@
             return new Date(year, month, 0).getDate();
         }
         
+        // 获取动态的item高度
+        function getItemHeight(picker) {
+            var firstItem = picker.find('.picker-item').first();
+            if (firstItem.length) {
+                return firstItem.outerHeight() || parseInt(firstItem.css('height')) || 50;
+            }
+            // 根据屏幕宽度返回默认值
+            if ($(window).width() <= 480) {
+                return 35;
+            } else if ($(window).width() <= 768) {
+                return 40;
+            }
+            return 50;
+        }
+        
         function setPickerValue(type, value) {
             var picker = $('#' + type + '_picker');
             var items = picker.find('.picker-item');
@@ -531,7 +781,7 @@
             });
             
             if (targetIndex >= 0) {
-                var itemHeight = 50;
+                var itemHeight = getItemHeight(picker);
                 var offset = (picker.height() / 2) - (itemHeight / 2) - (targetIndex * itemHeight);
                 picker.find('.picker-items').css('transform', 'translateY(' + offset + 'px)');
                 
@@ -549,7 +799,7 @@
             // 如果没有选中项，计算中间位置的值
             var picker = $('#' + type + '_picker');
             var items = picker.find('.picker-item');
-            var itemHeight = 50;
+            var itemHeight = getItemHeight(picker);
             var pickerHeight = picker.height();
             var centerY = pickerHeight / 2;
             var transform = picker.find('.picker-items').css('transform');
@@ -599,12 +849,12 @@
             var isDragging = false;
             var startY = 0;
             var startTranslate = 0;
-            var itemHeight = 50;
             var pickerHeight = picker.height();
             var minTranslate = 0;
             var maxTranslate = 0;
             
             function updateBounds() {
+                var itemHeight = getItemHeight(picker);
                 var itemCount = items.find('.picker-item').length;
                 var totalHeight = itemCount * itemHeight;
                 var centerOffset = (pickerHeight / 2) - (itemHeight / 2);
@@ -615,6 +865,7 @@
             updateBounds();
             
             function snapToNearest() {
+                var itemHeight = getItemHeight(picker);
                 var currentTransform = items.css('transform');
                 var translateY = 0;
                 
@@ -738,6 +989,21 @@
         
         // 初始化日期选择器
         initDatePicker();
+        
+        // 窗口大小改变时重新计算（用于屏幕旋转等情况）
+        var resizeTimer;
+        $(window).on('resize', function() {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(function() {
+                // 重新设置当前值以触发重新计算
+                var year = getPickerValue('year');
+                var month = getPickerValue('month');
+                var day = getPickerValue('day');
+                setPickerValue('year', year);
+                setPickerValue('month', month);
+                setPickerValue('day', day);
+            }, 300);
+        });
         
         // 显示输入表单
         $("#p1_enter_btn").click(function () {

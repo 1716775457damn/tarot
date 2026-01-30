@@ -24,15 +24,130 @@
     <link rel="stylesheet" type="text/css" href="../../includes/CSS/cards.css">
     <link rel="stylesheet" type="text/css" href="../../includes/fonts/stylesheet.css">
     <style>
-        /* 覆盖默认字体大小，让占卜结果更小更易读 */
+        /* 占卜结果字体稍小，适配桌面 */
         #prediction_text {
             font-size: 1.2vw !important;
             line-height: 1.6 !important;
             max-width: 90%;
         }
+
+        /* 桌面端：保持原版布局 */
+        @media (min-width: 1025px) {
+            .card_video_container {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            #text_info {
+                max-width: 40%;
+            }
+        }
+
+        /* 平板和手机：重排布局，避免绝对定位导致超出屏幕 */
         @media (max-width: 1024px) {
+            body {
+                overflow-y: auto;
+            }
+
+            .card_video_container {
+                position: static !important;
+                height: auto !important;
+                line-height: normal !important;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                padding: 80px 12px 40px;
+                box-sizing: border-box;
+            }
+
+            .flip-card {
+                width: 80vw !important;
+                max-width: 280px;
+                margin: 10px auto;
+                display: block;
+            }
+
+            .card_video {
+                width: 100% !important;
+                height: auto !important;
+            }
+
+            #text_info {
+                position: static !important;
+                margin: 20px auto 0 !important;
+                padding-top: 0 !important;
+                margin-right: 0 !important;
+                width: 100%;
+                text-align: left;
+                box-sizing: border-box;
+                padding: 0 8px;
+            }
+
             #prediction_text {
                 font-size: 14px !important;
+                max-width: 100%;
+            }
+
+            .tags_container {
+                margin-top: 8px;
+            }
+
+            .tag {
+                font-size: 12px !important;
+                margin-bottom: 4px;
+            }
+
+            #buttons {
+                margin-top: 10px;
+            }
+
+            .brillo_btn {
+                width: 48% !important;
+                font-size: 14px !important;
+                height: 44px !important;
+                line-height: 44px !important;
+                margin-right: 2% !important;
+                margin-bottom: 8px;
+            }
+
+            #subtitle_txt {
+                position: static !important;
+                margin-top: 10px;
+                font-size: 13px !important;
+                width: 100% !important;
+                padding: 0 12px 20px;
+                box-sizing: border-box;
+            }
+
+            #title_colored {
+                width: 40vw;
+                padding-top: 10px;
+            }
+
+            .icons {
+                width: 50px;
+            }
+        }
+
+        /* 小屏手机进一步收紧间距 */
+        @media (max-width: 480px) {
+            .card_video_container {
+                padding-top: 70px;
+            }
+
+            .flip-card {
+                width: 88vw !important;
+            }
+
+            .brillo_btn {
+                width: 100% !important;
+                margin-right: 0 !important;
+            }
+
+            #subtitle_txt {
+                font-size: 12px !important;
             }
         }
     </style>
