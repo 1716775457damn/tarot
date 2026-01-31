@@ -83,12 +83,12 @@
             <div class="main_text" id="p0_title">
                 <span class="rainbow">🔮 命元录入 🔮</span>
             </div>
-
+            
             <div class="form-group">
                 <label class="form-label">姓名</label>
                 <input type="text" id="user_name" placeholder="请输入您的姓名" class="form-input">
             </div>
-
+            
             <div class="form-group">
                 <label class="form-label">出生日期</label>
                 <div id="date_picker">
@@ -118,38 +118,37 @@
                 </div>
                 <input type="hidden" id="user_birth" value="">
             </div>
-
+            
             <div class="form-group">
                 <label class="form-label">您想问的问题</label>
-                <textarea id="user_question" rows="5" placeholder="例如：我今天去谈客户，穿什么颜色的衣服能旺财运？"
-                    class="form-textarea"></textarea>
+                <textarea id="user_question" rows="5" placeholder="例如：我今天去谈客户，穿什么颜色的衣服能旺财运？" class="form-textarea"></textarea>
             </div>
-
+            
             <div id="p0_enter_btn" class="brillo_btn submit-btn">
                 开始占卜 </br>
                 <img src="./includes/images/arrow_left_grey.png" class="btn_icon">
             </div>
-
+            
             <div id="p0_loading" class="loading-indicator">
                 <div class="loading-icon">🔮</div>
                 正在准备塔罗牌...
             </div>
         </div>
     </div>
-
+    
     <style>
         /* 表单容器 */
         #p0_main_content {
             max-width: 700px;
             margin: 0 auto;
             padding: 60px 40px;
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0,0,0,0.7);
             border-radius: 20px;
             backdrop-filter: blur(10px);
             border: 2px solid rgba(197, 163, 216, 0.3);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.5);
         }
-
+        
         /* 标题 */
         #p0_title {
             margin-bottom: 40px;
@@ -158,12 +157,12 @@
             color: #C5A3D8;
             text-shadow: 0 0 20px rgba(197, 163, 216, 0.5);
         }
-
+        
         /* 表单组 */
         .form-group {
             margin-bottom: 25px;
         }
-
+        
         /* 标签 */
         .form-label {
             display: block;
@@ -172,13 +171,13 @@
             font-size: 16px;
             font-weight: bold;
         }
-
+        
         /* 输入框 */
         .form-input,
         .form-textarea {
             width: 100%;
             padding: 18px;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255,255,255,0.1);
             border: 2px solid rgba(197, 163, 216, 0.4);
             color: #E6E6E6;
             font-size: 16px;
@@ -187,30 +186,30 @@
             transition: all 0.3s;
             box-sizing: border-box;
         }
-
+        
         .form-textarea {
             resize: vertical;
             min-height: 120px;
         }
-
+        
         .form-input:focus,
         .form-textarea:focus {
             outline: none;
             border-color: #C5A3D8 !important;
             box-shadow: 0 0 15px rgba(197, 163, 216, 0.5) !important;
-            background: rgba(255, 255, 255, 0.15) !important;
+            background: rgba(255,255,255,0.15) !important;
         }
-
+        
         .form-input::placeholder,
         .form-textarea::placeholder {
-            color: rgba(255, 255, 255, 0.5);
+            color: rgba(255,255,255,0.5);
         }
-
+        
         /* 日期选择器容器 */
         #date_picker {
             width: 100%;
             padding: 20px;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255,255,255,0.1);
             border: 2px solid rgba(197, 163, 216, 0.4);
             border-radius: 8px;
             box-sizing: border-box;
@@ -219,37 +218,37 @@
             align-items: center;
             position: relative;
         }
-
+        
         .picker-column {
             flex: 1;
             text-align: center;
         }
-
+        
         .picker-label {
             color: #C5A3D8;
             font-size: 14px;
             margin-bottom: 10px;
             font-weight: bold;
         }
-
+        
         .picker-wheel {
             height: 200px;
             overflow: hidden;
             position: relative;
             cursor: grab;
         }
-
+        
         .picker-wheel:active {
             cursor: grabbing;
         }
-
+        
         .picker-items {
             display: flex;
             flex-direction: column;
             align-items: center;
             transition: transform 0.3s ease-out;
         }
-
+        
         .picker-item {
             height: 50px;
             line-height: 50px;
@@ -259,14 +258,14 @@
             user-select: none;
             min-width: 60px;
         }
-
+        
         .picker-item.selected {
             color: #C5A3D8;
             font-size: 22px;
             font-weight: bold;
             text-shadow: 0 0 10px rgba(197, 163, 216, 0.5);
         }
-
+        
         .picker-wheel::before,
         .picker-wheel::after {
             content: '';
@@ -277,17 +276,17 @@
             pointer-events: none;
             z-index: 1;
         }
-
+        
         .picker-wheel::before {
             top: 0;
-            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 0%, transparent 100%);
+            background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, transparent 100%);
         }
-
+        
         .picker-wheel::after {
             bottom: 0;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, transparent 100%);
+            background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%);
         }
-
+        
         .picker-mask {
             position: absolute;
             top: 50%;
@@ -300,7 +299,7 @@
             border-bottom: 2px solid rgba(197, 163, 216, 0.5);
             background: rgba(197, 163, 216, 0.1);
         }
-
+        
         /* 提交按钮 */
         .submit-btn {
             cursor: pointer;
@@ -312,12 +311,12 @@
             box-shadow: 0 4px 15px rgba(197, 163, 216, 0.4);
             transition: all 0.3s;
         }
-
+        
         .submit-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(197, 163, 216, 0.6) !important;
         }
-
+        
         /* 加载指示器 */
         .loading-indicator {
             display: none;
@@ -327,25 +326,18 @@
             font-size: 16px;
             animation: pulse 2s infinite;
         }
-
+        
         .loading-icon {
             margin-bottom: 10px;
             font-size: 24px;
         }
-
+        
         /* 脉冲动画 */
         @keyframes pulse {
-
-            0%,
-            100% {
-                opacity: 1;
-            }
-
-            50% {
-                opacity: 0.6;
-            }
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
         }
-
+        
         /* 移动端适配 */
         @media (max-width: 768px) {
             #p0_main_content {
@@ -353,128 +345,127 @@
                 margin: 10px;
                 border-radius: 15px;
             }
-
+            
             #p0_title {
                 font-size: 24px;
                 margin-bottom: 30px;
             }
-
+            
             .form-label {
                 font-size: 14px;
                 margin-bottom: 6px;
             }
-
+            
             .form-input,
             .form-textarea {
                 padding: 14px;
-                font-size: 16px;
-                /* 防止iOS自动缩放 */
+                font-size: 16px; /* 防止iOS自动缩放 */
             }
-
+            
             .form-textarea {
                 min-height: 100px;
             }
-
+            
             #date_picker {
                 padding: 15px 10px;
             }
-
+            
             .picker-label {
                 font-size: 12px;
                 margin-bottom: 8px;
             }
-
+            
             .picker-wheel {
                 height: 150px;
             }
-
+            
             .picker-item {
                 height: 40px;
                 line-height: 40px;
                 font-size: 16px;
                 min-width: 50px;
             }
-
+            
             .picker-item.selected {
                 font-size: 18px;
             }
-
+            
             .picker-mask {
                 height: 40px;
                 margin-top: -20px;
             }
-
+            
             .picker-wheel::before,
             .picker-wheel::after {
                 height: 55px;
             }
-
+            
             .submit-btn {
                 padding: 15px;
                 font-size: 16px;
             }
-
+            
             .loading-indicator {
                 font-size: 14px;
             }
-
+            
             .loading-icon {
                 font-size: 20px;
             }
         }
-
+        
         /* 小屏幕手机适配 */
         @media (max-width: 480px) {
             #p0_main_content {
                 padding: 20px 15px;
                 margin: 5px;
             }
-
+            
             #p0_title {
                 font-size: 20px;
                 margin-bottom: 20px;
             }
-
+            
             .form-group {
                 margin-bottom: 20px;
             }
-
+            
             .form-input,
             .form-textarea {
                 padding: 12px;
                 font-size: 16px;
             }
-
+            
             #date_picker {
                 padding: 12px 8px;
             }
-
+            
             .picker-wheel {
                 height: 120px;
             }
-
+            
             .picker-item {
                 height: 35px;
                 line-height: 35px;
                 font-size: 14px;
             }
-
+            
             .picker-item.selected {
                 font-size: 16px;
             }
-
+            
             .picker-mask {
                 height: 35px;
                 margin-top: -17.5px;
             }
         }
-
+        
         /* 横屏适配 */
         @media (max-width: 768px) and (orientation: landscape) {
             #p0_main_content {
                 padding: 20px 30px;
             }
-
+            
             .picker-wheel {
                 height: 120px;
             }
@@ -712,35 +703,35 @@
             var currentYear = new Date().getFullYear();
             var startYear = currentYear - 100; // 100年前
             var endYear = currentYear;
-
+            
             // 初始化年份
             var yearItems = $('#year_items');
             for (var y = endYear; y >= startYear; y--) {
                 yearItems.append('<div class="picker-item" data-value="' + y + '">' + y + '</div>');
             }
-
+            
             // 初始化月份
             var monthItems = $('#month_items');
             for (var m = 1; m <= 12; m++) {
                 monthItems.append('<div class="picker-item" data-value="' + m + '">' + m + '</div>');
             }
-
+            
             // 初始化日期（默认31天，会根据年月动态更新）
             updateDayPicker(31);
-
+            
             // 设置默认值（当前日期）
             var today = new Date();
             setPickerValue('year', today.getFullYear());
             setPickerValue('month', today.getMonth() + 1);
             setPickerValue('day', today.getDate());
             updateBirthValue();
-
+            
             // 绑定滑动事件
             initPickerWheel('year');
             initPickerWheel('month');
             initPickerWheel('day');
         }
-
+        
         function updateDayPicker(maxDays) {
             var dayItems = $('#day_items');
             dayItems.empty();
@@ -757,11 +748,11 @@
                 setPickerValue('day', currentDay);
             }
         }
-
+        
         function getDaysInMonth(year, month) {
             return new Date(year, month, 0).getDate();
         }
-
+        
         // 获取动态的item高度
         function getItemHeight(picker) {
             var firstItem = picker.find('.picker-item').first();
@@ -776,30 +767,30 @@
             }
             return 50;
         }
-
+        
         function setPickerValue(type, value) {
             var picker = $('#' + type + '_picker');
             var items = picker.find('.picker-item');
             var targetIndex = -1;
-
-            items.each(function (index) {
+            
+            items.each(function(index) {
                 if (parseInt($(this).attr('data-value')) === value) {
                     targetIndex = index;
                     return false;
                 }
             });
-
+            
             if (targetIndex >= 0) {
                 var itemHeight = getItemHeight(picker);
                 var offset = (picker.height() / 2) - (itemHeight / 2) - (targetIndex * itemHeight);
                 picker.find('.picker-items').css('transform', 'translateY(' + offset + 'px)');
-
+                
                 // 更新选中状态
                 items.removeClass('selected');
                 items.eq(targetIndex).addClass('selected');
             }
         }
-
+        
         function getPickerValue(type) {
             var selected = $('#' + type + '_picker .picker-item.selected');
             if (selected.length) {
@@ -813,45 +804,45 @@
             var centerY = pickerHeight / 2;
             var transform = picker.find('.picker-items').css('transform');
             var translateY = 0;
-
+            
             if (transform && transform !== 'none') {
                 var matrix = transform.match(/matrix.*\((.+)\)/);
                 if (matrix) {
                     translateY = parseFloat(matrix[1].split(',')[5] || 0);
                 }
             }
-
+            
             var relativeY = centerY - translateY;
             var index = Math.round(relativeY / itemHeight);
             index = Math.max(0, Math.min(index, items.length - 1));
-
+            
             return parseInt(items.eq(index).attr('data-value'));
         }
-
+        
         function updateBirthValue() {
             var year = getPickerValue('year');
             var month = getPickerValue('month');
             var day = getPickerValue('day');
-
+            
             // 更新日期选项（根据年月）
             var maxDays = getDaysInMonth(year, month);
             var currentDayItems = $('#day_items .picker-item').length;
             if (currentDayItems !== maxDays) {
                 updateDayPicker(maxDays);
             }
-
+            
             // 确保日期在有效范围内
             if (day > maxDays) {
                 setPickerValue('day', maxDays);
                 day = maxDays;
             }
-
+            
             // 格式化为 YYYY-MM-DD
             var monthStr = month < 10 ? '0' + month : month;
             var dayStr = day < 10 ? '0' + day : day;
             $('#user_birth').val(year + '-' + monthStr + '-' + dayStr);
         }
-
+        
         function initPickerWheel(type) {
             var picker = $('#' + type + '_picker');
             var items = picker.find('.picker-items');
@@ -861,7 +852,7 @@
             var pickerHeight = picker.height();
             var minTranslate = 0;
             var maxTranslate = 0;
-
+            
             function updateBounds() {
                 var itemHeight = getItemHeight(picker);
                 var itemCount = items.find('.picker-item').length;
@@ -870,38 +861,38 @@
                 minTranslate = pickerHeight - totalHeight + centerOffset;
                 maxTranslate = centerOffset;
             }
-
+            
             updateBounds();
-
+            
             function snapToNearest() {
                 var itemHeight = getItemHeight(picker);
                 var currentTransform = items.css('transform');
                 var translateY = 0;
-
+                
                 if (currentTransform && currentTransform !== 'none') {
                     var matrix = currentTransform.match(/matrix.*\((.+)\)/);
                     if (matrix) {
                         translateY = parseFloat(matrix[1].split(',')[5] || 0);
                     }
                 }
-
+                
                 var centerY = pickerHeight / 2;
                 var relativeY = centerY - translateY;
                 var index = Math.round(relativeY / itemHeight);
                 var itemCount = items.find('.picker-item').length;
                 index = Math.max(0, Math.min(index, itemCount - 1));
-
+                
                 var targetTranslate = (pickerHeight / 2) - (itemHeight / 2) - (index * itemHeight);
                 targetTranslate = Math.max(minTranslate, Math.min(maxTranslate, targetTranslate));
-
+                
                 items.css('transition', 'transform 0.3s ease-out');
                 items.css('transform', 'translateY(' + targetTranslate + 'px)');
-
+                
                 // 更新选中状态
-                setTimeout(function () {
+                setTimeout(function() {
                     items.find('.picker-item').removeClass('selected');
                     items.find('.picker-item').eq(index).addClass('selected');
-
+                    
                     // 更新隐藏输入框的值
                     if (type === 'year' || type === 'month') {
                         updateDayPicker(getDaysInMonth(getPickerValue('year'), getPickerValue('month')));
@@ -909,9 +900,9 @@
                     updateBirthValue();
                 }, 300);
             }
-
+            
             // 鼠标事件
-            picker.on('mousedown', function (e) {
+            picker.on('mousedown', function(e) {
                 isDragging = true;
                 startY = e.clientY;
                 var currentTransform = items.css('transform');
@@ -924,24 +915,24 @@
                 items.css('transition', 'none');
                 e.preventDefault();
             });
-
-            $(document).on('mousemove', function (e) {
+            
+            $(document).on('mousemove', function(e) {
                 if (!isDragging) return;
                 var deltaY = e.clientY - startY;
                 var newTranslate = startTranslate + deltaY;
                 newTranslate = Math.max(minTranslate, Math.min(maxTranslate, newTranslate));
                 items.css('transform', 'translateY(' + newTranslate + 'px)');
             });
-
-            $(document).on('mouseup', function () {
+            
+            $(document).on('mouseup', function() {
                 if (isDragging) {
                     isDragging = false;
                     snapToNearest();
                 }
             });
-
+            
             // 触摸事件
-            picker.on('touchstart', function (e) {
+            picker.on('touchstart', function(e) {
                 isDragging = true;
                 startY = e.touches[0].clientY;
                 var currentTransform = items.css('transform');
@@ -954,8 +945,8 @@
                 items.css('transition', 'none');
                 e.preventDefault();
             });
-
-            $(document).on('touchmove', function (e) {
+            
+            $(document).on('touchmove', function(e) {
                 if (!isDragging) return;
                 var deltaY = e.touches[0].clientY - startY;
                 var newTranslate = startTranslate + deltaY;
@@ -963,47 +954,47 @@
                 items.css('transform', 'translateY(' + newTranslate + 'px)');
                 e.preventDefault();
             });
-
-            $(document).on('touchend', function () {
+            
+            $(document).on('touchend', function() {
                 if (isDragging) {
                     isDragging = false;
                     snapToNearest();
                 }
             });
-
+            
             // 滚轮事件
-            picker.on('wheel', function (e) {
+            picker.on('wheel', function(e) {
                 e.preventDefault();
                 var delta = e.originalEvent.deltaY;
                 var currentTransform = items.css('transform');
                 var translateY = 0;
-
+                
                 if (currentTransform && currentTransform !== 'none') {
                     var matrix = currentTransform.match(/matrix.*\((.+)\)/);
                     if (matrix) {
                         translateY = parseFloat(matrix[1].split(',')[5] || 0);
                     }
                 }
-
+                
                 var newTranslate = translateY + delta * 0.5;
                 newTranslate = Math.max(minTranslate, Math.min(maxTranslate, newTranslate));
-
+                
                 items.css('transition', 'transform 0.1s ease-out');
                 items.css('transform', 'translateY(' + newTranslate + 'px)');
-
+                
                 clearTimeout(picker.data('snapTimeout'));
                 picker.data('snapTimeout', setTimeout(snapToNearest, 150));
             });
         }
-
+        
         // 初始化日期选择器
         initDatePicker();
-
+        
         // 窗口大小改变时重新计算（用于屏幕旋转等情况）
         var resizeTimer;
-        $(window).on('resize', function () {
+        $(window).on('resize', function() {
             clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(function () {
+            resizeTimer = setTimeout(function() {
                 // 重新设置当前值以触发重新计算
                 var year = getPickerValue('year');
                 var month = getPickerValue('month');
@@ -1013,7 +1004,7 @@
                 setPickerValue('day', day);
             }, 300);
         });
-
+        
         // 显示输入表单
         $("#p1_enter_btn").click(function () {
             $("#page1").hide();
@@ -1046,15 +1037,15 @@
                         question: userQuestion,
                         preparedCards: data.cards || []
                     };
-
+                    
                     // 调试：打印保存的数据
                     console.log("保存的用户数据:", userData);
                     localStorage.setItem("tarotUserData", JSON.stringify(userData));
-
+                    
                     // 验证保存是否成功
                     var saved = JSON.parse(localStorage.getItem("tarotUserData"));
                     console.log("验证保存的数据:", saved);
-
+                    
                     // 跳转到结果页
                     window.location = "./prediction/17/index.html";
                 })
@@ -1065,45 +1056,6 @@
                     $("#p0_enter_btn").show();
                 });
         });
-
-        function initWebSocket() {
-            var protocol = window.location.protocol === 'https:' ? 'wss://' : 'ws://';
-            // 连接到我们刚才在 server.py 写的路由
-            var ws = new WebSocket(protocol + window.location.host + "/ws/text_input");
-
-            ws.onopen = function () {
-                $("#voice_status").text("🎙️ 设备已连接");
-                $("#voice_status").css("color", "#00ff00");
-            };
-
-            ws.onmessage = function (event) {
-                var text = event.data;
-                console.log("收到语音:", text);
-
-                // 1. 填入输入框
-                var currentVal = $("#user_question").val();
-                $("#user_question").val(currentVal ? currentVal + " " + text : text);
-
-                // 2. 视觉反馈（高亮一下）
-                $("#user_question").addClass("input-highlight");
-                $("#voice_status").text("⚡ 正在输入...");
-                $("#voice_status").css("color", "#FEB420");
-
-                setTimeout(function () {
-                    $("#user_question").removeClass("input-highlight");
-                    $("#voice_status").text("🎙️ 设备已连接");
-                    $("#voice_status").css("color", "#00ff00");
-                }, 1500);
-            };
-
-            ws.onclose = function () {
-                $("#voice_status").text("⚠️ 断开重连中...");
-                $("#voice_status").css("color", "red");
-                setTimeout(initWebSocket, 3000); // 3秒后重连
-            };
-        }
-
-
 
 
         $(document).keypress(function (e) {
@@ -1173,8 +1125,6 @@
 
 
         });
-        // 启动监听
-        initWebSocket();
 
     });
 </script>
